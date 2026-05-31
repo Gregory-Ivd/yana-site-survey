@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Анкета для нового сайту — Яна Баранова</title>
+<style>
+  :root{
+    --bg:#f4f1ec; --card:#ffffff; --ink:#2b2a28; --muted:#7c776f;
+    --accent:#7a5c3e; --accent2:#a07c52; --line:#e7e1d8; --soft:#f7f4ef;
+    --ok:#3f7d58; --shadow:0 18px 40px rgba(60,45,30,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 70% -10%,#efe7da 0,var(--bg) 60%);
+    color:var(--ink);line-height:1.55;min-height:100vh;
+    display:flex;align-items:flex-start;justify-content:center;padding:28px 16px 60px;
+  }
+  .wrap{width:100%;max-width:680px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:22px;
+    box-shadow:var(--shadow);padding:34px 30px;
+  }
+  .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin:0 0 10px}
+  h1{font-size:27px;line-height:1.25;margin:0 0 14px}
+  h2{font-size:21px;line-height:1.3;margin:0 0 6px}
+  p{margin:0 0 14px;color:var(--ink)}
+  .lead{color:var(--muted);font-size:15.5px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 24px}
+  .pill{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-size:13.5px;color:var(--muted)}
+  .note{background:var(--soft);border-left:3px solid var(--accent2);border-radius:10px;padding:13px 15px;font-size:14px;color:var(--muted);margin:18px 0}
+  .btn{
+    border:none;border-radius:14px;padding:15px 22px;font:inherit;font-size:16px;font-weight:600;
+    cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,background .2s;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 12px 24px rgba(122,92,62,.30)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(122,92,62,.38)}
+  .btn-primary:active{transform:translateY(0)}
+  .btn-ghost{background:var(--soft);color:var(--accent);border:1px solid var(--line)}
+  .btn-ghost:hover{background:#efe7da}
+  .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+  .full{width:100%}
+  /* progress */
+  .topbar{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .bar{flex:1;height:8px;background:var(--line);border-radius:999px;overflow:hidden}
+  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .35s ease}
+  .count{font-size:13px;color:var(--muted);white-space:nowrap}
+  .block-tag{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin-bottom:8px}
+  .qhint{color:var(--muted);font-size:14.5px;margin:8px 0 18px}
+  /* options */
+  .opts{display:flex;flex-direction:column;gap:11px;margin:4px 0 6px}
+  .opt{
+    display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;
+    padding:14px 16px;cursor:pointer;transition:border-color .15s,background .15s;background:#fff;
+  }
+  .opt:hover{border-color:var(--accent2);background:var(--soft)}
+  .opt.sel{border-color:var(--accent);background:#f3ece2}
+  .opt .mark{width:22px;height:22px;border-radius:50%;border:2px solid var(--accent2);flex:0 0 auto;position:relative}
+  .opt.multi .mark{border-radius:7px}
+  .opt.sel .mark{background:var(--accent);border-color:var(--accent)}
+  .opt.sel .mark::after{content:"";position:absolute;inset:5px;background:#fff;border-radius:inherit}
+  .opt span{font-size:15.5px}
+  textarea,input[type=text]{
+    width:100%;border:1.5px solid var(--line);border-radius:14px;padding:14px;font:inherit;font-size:15.5px;
+    color:var(--ink);background:#fff;resize:vertical;outline:none;transition:border-color .15s;
+  }
+  textarea:focus,input[type=text]:focus{border-color:var(--accent)}
+  textarea{min-height:120px}
+  .sub{margin-top:12px}
+  .sub label{display:block;font-size:13.5px;color:var(--muted);margin-bottom:6px}
+  .nav{display:flex;gap:12px;margin-top:26px}
+  .nav .btn{flex:1}
+  /* review */
+  .rev{margin:6px 0 0}
+  .rev .item{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px;background:#fff}
+  .rev .q{font-size:13.5px;color:var(--muted);margin-bottom:5px}
+  .rev .a{font-size:15.5px;white-space:pre-wrap}
+  .rev .a.empty{color:#bdb6aa;font-style:italic}
+  .rev .edit{float:right;font-size:13px;color:var(--accent);background:none;border:none;cursor:pointer;font-weight:600;padding:0}
+  .rev .edit:hover{text-decoration:underline}
+  .center{text-align:center}
+  .big-ok{font-size:54px;margin:6px 0 10px}
+  .fade{animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#2b2a28;color:#fff;padding:12px 20px;border-radius:12px;font-size:14.5px;opacity:0;pointer-events:none;transition:opacity .25s}
+  .toast.show{opacity:1}
+  @media(max-width:520px){.card{padding:26px 20px}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== WELCOME ===== -->
+  <section class="card fade" id="welcome">
+    <p class="eyebrow">Новий сайт · підготовка</p>
+    <h1>Анкета для роботи над Вашим сайтом</h1>
+    <p class="lead">Пані Яно, доброго дня! Ми починаємо оновлення Вашого сайту. Щоб зробити його справді «під Вас», нам важливо спершу зрозуміти головне: <b>яким Ви бачите сайт, для кого він і яку мету має вирішувати</b>.</p>
+    <p class="lead">Ця анкета сама підлаштовує питання під Ваші відповіді — зайвого не запитає. Ваші відповіді стануть основою для стратегії та структури нового сайту.</p>
+    <div class="meta">
+      <span class="pill">⏱ ~25–30 хвилин</span>
+      <span class="pill">✏️ Можна виправити перед надсиланням</span>
+      <span class="pill">💾 Збереже прогрес</span>
+      <span class="pill">🔒 Лише для команди сайту</span>
+    </div>
+    <div class="note">Немає «правильних» відповідей. Пишіть вільно, своїми словами. Де не маєте відповіді — так і напишіть «не знаю» чи пропустіть: це нормально.</div>
+    <button class="btn btn-primary full" id="startBtn">Почати анкету →</button>
+    <p class="lead" style="margin-top:14px;font-size:13.5px" id="resumeHint" hidden>↻ Знайдено збережені відповіді — Ви продовжите з того ж місця.</p>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="card" id="quiz" hidden>
+    <div class="topbar">
+      <div class="bar"><i id="barFill"></i></div>
+      <div class="count" id="count">1 / 1</div>
+    </div>
+    <div id="qBody"></div>
+    <div class="nav">
+      <button class="btn btn-ghost" id="backBtn">← Назад</button>
+      <button class="btn btn-primary" id="nextBtn">Далі →</button>
+    </div>
+  </section>
+
+  <!-- ===== REVIEW ===== -->
+  <section class="card" id="review" hidden>
+    <p class="eyebrow">Майже готово</p>
+    <h1>Перевірте свої відповіді</h1>
+    <p class="lead">Усе правильно? Будь-яку відповідь можна виправити — натисніть «Редагувати». Коли все гаразд, надішліть анкету нам.</p>
+    <div class="rev" id="revList"></div>
+    <div class="nav">
+      <button class="btn btn-ghost" id="editBackBtn">← Повернутись до питань</button>
+      <button class="btn btn-primary" id="sendBtn">✓ Підтвердити та надіслати</button>
+    </div>
+  </section>
+
+  <!-- ===== DONE ===== -->
+  <section class="card center fade" id="done" hidden>
+    <div class="big-ok">🌿</div>
+    <h1>Дякуємо, пані Яно!</h1>
+    <p class="lead">Ваші відповіді надіслано. Ми складемо з них стратегію та структуру сайту і повернемось до Вас із пропозицією.</p>
+    <div id="fallback" hidden>
+      <div class="note">Якщо автоматичне надсилання не спрацювало — збережіть відповіді файлом і надішліть їх нам зручним способом.</div>
+      <button class="btn btn-ghost full" id="dlBtn">⬇ Зберегти відповіді (.txt)</button>
+    </div>
+  </section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   КОНФІГ — куди надсилати відповіді.
+   Сюди вставити URL веб-застосунку Google Apps Script (доставка в Telegram + пошта).
+   Поки порожнє — сторінка працює, а наприкінці пропонує зберегти файл.
+   ===================================================================== */
+const CONFIG = {
+  endpoint: "" // напр. "https://script.google.com/macros/s/AKfy.../exec"
+};
+
+/* ============================ ПИТАННЯ ============================
+   Типи: single | multi | text
+   showIf(a) — питання показується, лише якщо повертає true (a = усі відповіді)
+   allowOther — додає варіант «Інше» з полем для тексту
+   comment    — додає необов'язкове поле «Коментар»
+================================================================== */
+const SITE = "site_type";
+const POL  = "pol_open";
+
+const Q = [
+  // ---- ГОЛОВНЕ ----
+  { id:SITE, block:"Головне", type:"single", required:true,
+    q:"Чий це сайт за задумом?",
+    hint:"Зараз zovu.org — це сайт організації «Золотий вік України», де Ви президент. Новий сайт може бути іншим. Від цієї відповіді залежать наступні питання.",
+    options:["Особистий сайт Яни Баранової (Ви — у центрі)","Сайт організації ЗОВУ (організація — у центрі)","Гібрид: Ви як «обличчя» організації"], comment:true },
+
+  { id:"survive_role", block:"Головне", type:"single",
+    q:"Чи має сайт пережити можливу зміну Вашої посади без переробки?",
+    hint:"Наприклад, якщо у майбутньому зміниться Ваша роль чи статус.",
+    options:["Так, має лишитись актуальним","Ні, це не принципово","Не знаю"], comment:true },
+
+  // ---- МЕТА ----
+  { id:"goal", block:"Мета сайту", type:"single", required:true,
+    q:"Якщо за рік сайт зробить добре лише ОДНУ річ — що це має бути?",
+    hint:"Оберіть головне. Це визначає, навколо чого будуємо головну сторінку.",
+    options:["Щоб ЗМІ кликали Вас як експертку / правозахисницю","Збір донатів на проєкти","Підготувати ґрунт під майбутню політичну діяльність","Залучати однодумців і волонтерів"], allowOther:true },
+
+  { id:"success", block:"Мета сайту", type:"text",
+    q:"Як Ви зрозумієте через рік, що сайт «спрацював»?",
+    hint:"Назвіть 2–3 конкретні ознаки своїми словами." },
+
+  // ---- РОЛІ ----
+  { id:"roles_all", block:"Хто Ви", type:"text", required:true,
+    q:"Перелічіть усі Ваші ролі та іпостасі.",
+    hint:"Психологиня, правозахисниця, помічниця нардепа, благодійниця, президентка ЗОВУ, громадська діячка… Не пропускайте навіть «дрібні»." },
+
+  { id:"roles_main", block:"Хто Ви", type:"text",
+    q:"Яка з цих ролей — головна на сайті, а які — підтримка?",
+    hint:"Напишіть, що винести «у заголовок», а що лишити як доповнення." },
+
+  { id:"one_phrase", block:"Хто Ви", type:"text",
+    q:"Якою фразою Ви хотіли б, щоб Вас описали після 1 хвилини на сайті?",
+    hint:"Одне-два речення — як Ви хочете звучати для незнайомця." },
+
+  // ---- ОРГАНІЗАЦІЯ (гілка) ----
+  { id:"org_about", block:"Організація ЗОВУ", type:"text",
+    showIf:a=>a[SITE]&&a[SITE].startsWith("Сайт організації")||a[SITE]&&a[SITE].startsWith("Гібрид"),
+    q:"Коротко про організацію: місія та головні напрямки.",
+    hint:"Що таке ЗОВУ, чим займається, чим пишаєтесь найбільше." },
+
+  { id:"org_team", block:"Організація ЗОВУ", type:"single",
+    showIf:a=>a[SITE]&&a[SITE].startsWith("Сайт організації")||a[SITE]&&a[SITE].startsWith("Гібрид"),
+    q:"Чи показувати на сайті команду / членів / партнерів?",
+    options:["Так, команду і партнерів","Лише партнерів","Ні, не показувати"], comment:true },
+
+  // ---- ОСОБИСТЕ (гілка) ----
+  { id:"bio", block:"Про Вас особисто", type:"text",
+    showIf:a=>a[SITE]&&a[SITE].startsWith("Особистий")||a[SITE]&&a[SITE].startsWith("Гібрид"),
+    q:"Чи є готова розгорнута біографія та список регалій?",
+    hint:"Якщо є — можна вставити сюди або написати «надішлю окремо». Якщо немає — позначте «треба написати»." },
+
+  // ---- АУДИТОРІЇ ----
+  { id:"audience", block:"Аудиторії", type:"multi", required:true,
+    q:"Хто має приходити на сайт?",
+    hint:"Оберіть усіх, хто важливий. Далі ми спитаємо, що кожен має зробити.",
+    options:["Журналісти / ЗМІ","Потенційні донори / партнери","Чиновники, колеги по реформах","Однодумці / волонтери","Майбутні виборці","Міжнародна аудиторія (іноземці)"], allowOther:true },
+
+  { id:"audience_action", block:"Аудиторії", type:"text",
+    q:"Що ці люди мають зробити, потрапивши на сайт?",
+    hint:"Підписатись, написати Вам, задонатити, завантажити прес-кіт, поширити статтю…" },
+
+  // ---- ТЕМИ ----
+  { id:"themes", block:"Теми та проєкти", type:"text", required:true,
+    q:"Ваші пріоритетні теми — з чим хочете асоціюватись найперше?",
+    hint:"Можна впорядкувати за важливістю." },
+
+  { id:"cases", block:"Теми та проєкти", type:"text",
+    q:"Опишіть 3–5 найсильніших кейсів або результатів.",
+    hint:"Наприклад: моніторинг колонії, справа в суді, освітній проєкт. Що зробили — що змінилося." },
+
+  { id:"hide", block:"Теми та проєкти", type:"text",
+    q:"Чи є теми / проєкти, які НЕ варто показувати на сайті?",
+    hint:"Чутливі, незавершені або політично ризиковані. Якщо немає — напишіть «немає»." },
+
+  // ---- ПОЛІТИКА (гілка) ----
+  { id:POL, block:"Політичні плани", type:"single", required:true,
+    q:"Наскільки відкрито на сайті можна говорити про Ваші політичні плани?",
+    options:["Прямо (йду в політику)","Натяком — через місію та результати, без гасел","Поки взагалі не згадувати"], comment:true },
+
+  { id:"pol_limits", block:"Політичні плани", type:"text",
+    showIf:a=>a[POL]&&!a[POL].startsWith("Поки взагалі"),
+    q:"Чи є обмеження, поки Ви помічниця нардепа?",
+    hint:"Що не можна писати, що треба з кимось узгоджувати. Якщо немає — «немає»." },
+
+  // ---- СТИЛЬ ----
+  { id:"tone", block:"Стиль і тон", type:"multi",
+    q:"Яким має бути тон сайту?",
+    hint:"Оберіть 2–3, що найближчі.",
+    options:["Офіційний","Теплий, людяний","Експертний","Бойовий, активістський","Надихаючий","Спокійний, стриманий"], allowOther:true },
+
+  { id:"likes", block:"Стиль і тон", type:"text",
+    q:"Назвіть 1–3 сайти (укр. чи закордонні), які Вам подобаються — і чим саме.",
+    hint:"Можна просто посилання + пару слів." },
+
+  { id:"brand", block:"Стиль і тон", type:"single",
+    q:"Чи є фірмові кольори, логотип або шрифти, яких треба триматись?",
+    options:["Так — надішлю матеріали","Частково","Ні, можна запропонувати нові"], comment:true },
+
+  // ---- МОВИ ----
+  { id:"langs", block:"Мови", type:"multi", required:true,
+    q:"Якими мовами потрібен сайт?",
+    options:["Українська","Англійська","Інша"], allowOther:true, comment:true },
+
+  // ---- МАТЕРІАЛИ ----
+  { id:"photos", block:"Матеріали", type:"single",
+    q:"Чи є професійні фотографії?",
+    options:["Так, є","Частково","Ні, але готова на фотосесію","Ні і поки не планую"] },
+
+  { id:"domain", block:"Матеріали", type:"single",
+    q:"Домен: лишаємось на zovu.org чи розглядаємо новий?",
+    options:["Лишаємось на zovu.org","Хочу новий домен","Не знаю — порадьте"], comment:true },
+
+  { id:"social", block:"Матеріали", type:"text",
+    q:"Які соцмережі під'єднати до сайту?",
+    hint:"Facebook, Instagram (@zovu.org2021), Telegram, YouTube, LinkedIn — впишіть посилання, які є." },
+
+  { id:"lawyer", block:"Матеріали", type:"single",
+    q:"Чи є доступ до юриста (для політики конфіденційності)?",
+    options:["Так","Ні","Не знаю"] },
+
+  // ---- ВІЛЬНЕ ПОЛЕ ----
+  { id:"annoys", block:"Наостанок", type:"text",
+    q:"Що Вас найбільше дратує в поточному сайті zovu.org?",
+    hint:"І, навпаки, чого там найбільше бракує." },
+
+  { id:"free", block:"Наостанок", type:"text",
+    q:"Будь-що, чого ми не спитали, але Вам важливо сказати:",
+    hint:"Необов'язково. Але якщо є думка — вона цінна." }
+];
+
+/* ============================ ЛОГІКА ============================ */
+const KEY = "yana_survey_v1";
+let answers = {};
+let idx = 0;            // індекс у масиві Q
+let editReturn = false; // повернутись на review після редагування
+
+const $ = s=>document.querySelector(s);
+const welcome=$("#welcome"), quiz=$("#quiz"), review=$("#review"), done=$("#done");
+
+// ---- збереження ----
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify({answers,idx})); }catch(e){} }
+function load(){ try{ const r=localStorage.getItem(KEY); if(r){const o=JSON.parse(r); answers=o.answers||{}; idx=o.idx||0; return true;} }catch(e){} return false; }
+
+// ---- видимість / навігація ----
+function visible(i){ const q=Q[i]; return !q.showIf || q.showIf(answers); }
+function visibleList(){ return Q.map((q,i)=>i).filter(visible); }
+function firstVisibleFrom(i,dir){
+  i+=dir;
+  while(i>=0 && i<Q.length){ if(visible(i)) return i; i+=dir; }
+  return -1;
+}
+
+// ---- рендер питання ----
+function renderQuestion(){
+  const q=Q[idx];
+  const vis=visibleList();
+  const pos=vis.indexOf(idx)+1;
+  const total=vis.length;
+  $("#count").textContent = pos+" / "+total;
+  $("#barFill").style.width = Math.round(pos/total*100)+"%";
+
+  let h = `<div class="block-tag">${q.block}</div><h2>${q.q}</h2>`;
+  if(q.hint) h += `<div class="qhint">${q.hint}</div>`;
+
+  if(q.type==="text"){
+    h += `<textarea id="f_${q.id}" placeholder="Ваша відповідь…">${esc(answers[q.id]||"")}</textarea>`;
+  } else {
+    const multi = q.type==="multi";
+    const cur = answers[q.id] || (multi?[]:"");
+    h += `<div class="opts" id="opts_${q.id}">`;
+    let opts = q.options.slice();
+    if(q.allowOther) opts.push("Інше");
+    opts.forEach(opt=>{
+      const sel = multi ? cur.includes(opt) : cur===opt;
+      h += `<div class="opt ${multi?'multi':''} ${sel?'sel':''}" data-v="${esc(opt)}"><span class="mark"></span><span>${opt}</span></div>`;
+    });
+    h += `</div>`;
+    if(q.allowOther){
+      const otherVal = answers[q.id+"__other"]||"";
+      const showOther = multi ? cur.includes("Інше") : cur==="Інше";
+      h += `<div class="sub" id="other_${q.id}" ${showOther?'':'hidden'}><input type="text" id="fo_${q.id}" placeholder="Впишіть свій варіант…" value="${esc(otherVal)}"></div>`;
+    }
+  }
+  if(q.comment){
+    h += `<div class="sub"><label>Коментар (необов'язково)</label><textarea id="fc_${q.id}" style="min-height:70px" placeholder="Якщо хочете щось додати…">${esc(answers[q.id+"__comment"]||"")}</textarea></div>`;
+  }
+  $("#qBody").innerHTML = h;
+  $("#qBody").classList.remove("fade"); void $("#qBody").offsetWidth; $("#qBody").classList.add("fade");
+
+  // події вибору
+  if(q.type!=="text"){
+    document.querySelectorAll(`#opts_${q.id} .opt`).forEach(el=>{
+      el.onclick=()=>{
+        const v=el.getAttribute("data-v");
+        if(q.type==="multi"){
+          let arr = answers[q.id]||[];
+          arr = arr.includes(v) ? arr.filter(x=>x!==v) : arr.concat([v]);
+          answers[q.id]=arr;
+        } else {
+          answers[q.id]=v;
+        }
+        save(); renderQuestion(); updateNext();
+      };
+    });
+  } else {
+    // живе оновлення для текстового питання, щоб кнопка «Далі» розблоковувалась під час набору
+    const ta=$("#f_"+q.id);
+    if(ta) ta.oninput=()=>{ answers[q.id]=ta.value; updateNext(); };
+  }
+  $("#backBtn").style.visibility = (firstVisibleFrom(idx,-1)===-1) ? "hidden" : "visible";
+  $("#nextBtn").textContent = (firstVisibleFrom(idx,+1)===-1) ? "Переглянути відповіді →" : "Далі →";
+  updateNext();
+}
+
+function captureCurrent(){
+  const q=Q[idx];
+  if(q.type==="text"){
+    const v=$("#f_"+q.id); if(v) answers[q.id]=v.value.trim();
+  }
+  if(q.allowOther){ const fo=$("#fo_"+q.id); if(fo) answers[q.id+"__other"]=fo.value.trim(); }
+  if(q.comment){ const fc=$("#fc_"+q.id); if(fc) answers[q.id+"__comment"]=fc.value.trim(); }
+  save();
+}
+
+function answered(q){
+  const v=answers[q.id];
+  if(q.type==="multi") return v && v.length>0;
+  return v!==undefined && String(v).trim()!=="";
+}
+function updateNext(){
+  const q=Q[idx];
+  $("#nextBtn").disabled = q.required && !answered(q);
+}
+
+// ---- кнопки навігації ----
+$("#nextBtn").onclick=()=>{
+  captureCurrent();
+  if(editReturn){ editReturn=false; showReview(); return; }
+  const n=firstVisibleFrom(idx,+1);
+  if(n===-1){ showReview(); } else { idx=n; save(); renderQuestion(); }
+};
+$("#backBtn").onclick=()=>{
+  captureCurrent();
+  const p=firstVisibleFrom(idx,-1);
+  if(p!==-1){ idx=p; save(); renderQuestion(); }
+};
+
+// ---- review ----
+function showReview(){
+  quiz.hidden=true; welcome.hidden=true; done.hidden=true; review.hidden=false;
+  window.scrollTo(0,0);
+  let h="";
+  visibleList().forEach(i=>{
+    const q=Q[i];
+    let a = answers[q.id];
+    if(Array.isArray(a)) a=a.slice();
+    let txt="";
+    if(q.type==="multi"){
+      let arr=(a||[]).map(x=> x==="Інше" ? "Інше: "+(answers[q.id+"__other"]||"—") : x);
+      txt=arr.join(", ");
+    } else if(a==="Інше"){ txt="Інше: "+(answers[q.id+"__other"]||"—"); }
+    else { txt=a||""; }
+    if(q.comment && answers[q.id+"__comment"]) txt += (txt?"\n":"")+"💬 "+answers[q.id+"__comment"];
+    const empty = !txt;
+    h+=`<div class="item"><button class="edit" data-i="${i}">Редагувати</button>
+        <div class="q">${q.q}</div>
+        <div class="a ${empty?'empty':''}">${empty?'— не заповнено —':esc(txt)}</div></div>`;
+  });
+  $("#revList").innerHTML=h;
+  document.querySelectorAll("#revList .edit").forEach(b=>{
+    b.onclick=()=>{ idx=parseInt(b.getAttribute("data-i")); editReturn=true; review.hidden=true; quiz.hidden=false; window.scrollTo(0,0); renderQuestion(); };
+  });
+}
+$("#editBackBtn").onclick=()=>{ editReturn=false; review.hidden=true; quiz.hidden=false; idx=visibleList()[0]; renderQuestion(); };
+
+// ---- надсилання ----
+function buildText(){
+  let lines=["АНКЕТА ДЛЯ НОВОГО САЙТУ — ЯНА БАРАНОВА","============================================",""];
+  visibleList().forEach(i=>{
+    const q=Q[i]; let a=answers[q.id];
+    let txt="";
+    if(q.type==="multi"){ txt=(a||[]).map(x=> x==="Інше"?"Інше: "+(answers[q.id+"__other"]||"—"):x).join(", "); }
+    else if(a==="Інше"){ txt="Інше: "+(answers[q.id+"__other"]||"—"); }
+    else { txt=a||"—"; }
+    if(q.comment && answers[q.id+"__comment"]) txt+=" | коментар: "+answers[q.id+"__comment"];
+    lines.push("▸ ["+q.block+"] "+q.q);
+    lines.push("   "+(txt||"—"));
+    lines.push("");
+  });
+  return lines.join("\n");
+}
+
+$("#sendBtn").onclick=async ()=>{
+  captureCurrent();
+  const text=buildText();
+  const payload={ text, data:answers, ts:new Date().toISOString() };
+  $("#sendBtn").disabled=true; $("#sendBtn").textContent="Надсилаємо…";
+  let ok=false;
+  if(CONFIG.endpoint){
+    try{
+      await fetch(CONFIG.endpoint,{ method:"POST", mode:"no-cors",
+        headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(payload) });
+      ok=true;
+    }catch(e){ ok=false; }
+  }
+  lastText=text;
+  review.hidden=true; done.hidden=false; window.scrollTo(0,0);
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  if(!ok){ $("#fallback").hidden=false; }
+};
+
+// ---- fallback download ----
+let lastText="";
+$("#dlBtn").onclick=()=>{
+  const blob=new Blob([lastText],{type:"text/plain;charset=utf-8"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download="Анкета_сайт_Яна_відповіді.txt"; a.click(); URL.revokeObjectURL(a.href);
+};
+
+// ---- старт ----
+function startQuiz(){
+  welcome.hidden=true; review.hidden=true; done.hidden=true; quiz.hidden=false;
+  if(!visible(idx)) idx=visibleList()[0]||0;
+  renderQuestion(); window.scrollTo(0,0);
+}
+$("#startBtn").onclick=startQuiz;
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+// ініціалізація
+if(load() && Object.keys(answers).length){ $("#resumeHint").hidden=false; }
+</script>
+</body>
+</html>
